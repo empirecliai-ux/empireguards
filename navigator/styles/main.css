@@ -1,0 +1,340 @@
+:root {
+    --primary: #06b6d4;
+    --secondary: #0891b2;
+    --background: #020617;
+    --surface: #0f172a;
+    --text: #e2e8f0;
+    --accent: #7c3aed;
+    --success: #10b981;
+}
+
+body.theme-cyber {
+    --primary: #22d3ee;
+    --secondary: #0891b2;
+    --background: #0f172a;
+    --surface: #1e293b;
+    --text: #cffafe;
+    --accent: #f472b6;
+}
+
+body.theme-crimson {
+    --primary: #ef4444;
+    --secondary: #991b1b;
+    --background: #0a0a0a;
+    --surface: #171717;
+    --text: #fee2e2;
+    --accent: #facc15;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Empire Title Bar */
+.empire-titlebar {
+    height: 40px;
+    background: linear-gradient(90deg, var(--background) 0%, var(--surface) 100%);
+    border-bottom: 1px solid var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    -webkit-app-region: drag;
+    position: relative;
+}
+
+.empire-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--primary);
+}
+
+.empire-controls {
+    display: flex;
+    gap: 8px;
+    -webkit-app-region: no-drag;
+}
+
+.control-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.control-btn.close { background: #ef4444; }
+.control-btn.minimize { background: #f59e0b; }
+.control-btn.maximize { background: #10b981; }
+
+/* Empire Navigation Bar */
+.empire-navbar {
+    height: 50px;
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    gap: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.nav-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-btn {
+    width: 32px;
+    height: 32px;
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 6px;
+    color: #06b6d4;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.nav-btn:hover {
+    background: rgba(6, 182, 212, 0.2);
+    border-color: #06b6d4;
+}
+
+.nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.address-bar {
+    flex: 1;
+    height: 36px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 8px;
+    padding: 0 15px;
+    color: #e2e8f0;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.address-bar:focus {
+    border-color: #06b6d4;
+    box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2);
+}
+
+.empire-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Nova Voice Interface */
+.nova-interface {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.nova-interface:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(124, 58, 237, 0.6);
+}
+
+.nova-interface.listening {
+    animation: listening 1s infinite;
+}
+
+@keyframes listening {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.nova-icon {
+    color: white;
+    font-size: 24px;
+}
+
+/* Societas Panel Toggle */
+.societas-toggle {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 120px;
+    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid #06b6d4;
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 999;
+}
+
+.societas-toggle:hover {
+    width: 50px;
+    background: linear-gradient(180deg, #06b6d4 0%, #1e293b 100%);
+}
+
+.societas-toggle span {
+    writing-mode: vertical-rl;
+    font-size: 12px;
+    font-weight: bold;
+    color: #06b6d4;
+}
+
+/* Main Browser Content */
+.browser-content {
+    height: calc(100vh - 90px);
+    background: #000;
+    position: relative;
+}
+
+/* Empire Loading Screen */
+.empire-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.empire-logo-large {
+    font-size: 48px;
+    font-weight: bold;
+    color: #06b6d4;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+}
+
+.loading-text {
+    font-size: 16px;
+    color: #64748b;
+    margin-bottom: 30px;
+}
+
+.loading-bar {
+    width: 300px;
+    height: 4px;
+    background: rgba(6, 182, 212, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.loading-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #06b6d4 0%, #7c3aed 100%);
+    width: 0%;
+    animation: loading 3s ease-in-out;
+}
+
+@keyframes loading {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+/* Voice Command Overlay */
+.voice-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.voice-overlay.active {
+    display: flex;
+}
+
+.voice-content {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 2px solid #06b6d4;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    max-width: 500px;
+}
+
+.voice-animation {
+    width: 100px;
+    height: 100px;
+    border: 3px solid #06b6d4;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    position: relative;
+    animation: voicePulse 1.5s infinite;
+}
+
+@keyframes voicePulse {
+    0%, 100% { transform: scale(1); border-color: #06b6d4; }
+    50% { transform: scale(1.1); border-color: #7c3aed; }
+}
+
+.voice-text {
+    font-size: 18px;
+    color: #e2e8f0;
+    margin-bottom: 10px;
+}
+
+.voice-command {
+    font-size: 14px;
+    color: #06b6d4;
+    font-style: italic;
+}

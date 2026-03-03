@@ -1,0 +1,19 @@
+{
+  "notes": "Local-only settings. This file is git-ignored.",
+  "github": {
+    "token": ""
+  },
+  "api_keys": {
+    "openai": "",
+    "xai": "",
+    "other": ""
+  },
+  "intake": {
+    "base_dir": "/home/tg/work_intake",
+    "scan_script": "/home/tg/work_intake/Scan-And-Extract.ps1"
+  },
+  "runtime": {
+    "codex_cli_path": ""
+  }
+}
+

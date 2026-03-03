@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-mono;
+  }
+}
+
+.empire-border {
+  @apply border border-emerald-400/50 shadow-neon-emerald;
+}
+
+.empire-header {
+  @apply text-xs font-bold uppercase tracking-widest text-emerald-400 drop-shadow-[0_0_5px_rgba(52,211,153,0.5)];
+}
+
+.gradient-divider {
+  @apply h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent my-4;
+}
+
+.animate-pulse-fast {
+  animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .5; }
+}
+
+.neon-text-emerald {
+  @apply text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)];
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-950;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-emerald-600 rounded;
+}

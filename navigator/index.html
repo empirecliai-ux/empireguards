@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empire Navigator</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/window-manager.css">
+</head>
+<body>
+    <!-- Empire Title Bar -->
+    <div class="empire-titlebar">
+        <div class="empire-logo">
+            🏛️ EMPIRE NAVIGATOR
+            <span style="font-size: 10px; opacity: 0.7;">v1.0.0</span>
+        </div>
+        <div class="empire-controls">
+            <button class="control-btn minimize" onclick="minimizeWindow()"></button>
+            <button class="control-btn maximize" onclick="maximizeWindow()"></button>
+            <button class="control-btn close" onclick="closeWindow()"></button>
+        </div>
+    </div>
+
+    <!-- Empire Navigation Bar -->
+    <div class="empire-navbar">
+        <div class="nav-controls">
+            <button class="nav-btn" id="back-btn" onclick="goBack()" title="Back">←</button>
+            <button class="nav-btn" id="forward-btn" onclick="goForward()" title="Forward">→</button>
+            <button class="nav-btn" onclick="refresh()" title="Refresh">⟳</button>
+            <button class="nav-btn" id="new-tab-btn" title="New Window">➕</button>
+        </div>
+
+        <input type="text" class="address-bar" id="address-bar" placeholder="Enter URL or search..." onkeypress="handleAddressBar(event)">
+
+        <div class="empire-status">
+            <div class="status-indicator"></div>
+            <span>EMPIRE ONLINE</span>
+            <span id="agent-count">47 AGENTS</span>
+        </div>
+    </div>
+
+    <!-- Main Browser Content -->
+    <div class="browser-content" id="browser-content">
+        <!-- Dynamic panes will be inserted here -->
+        <div id="panes-container" class="panes-container"></div>
+
+        <!-- Empire Loading Screen -->
+        <div class="empire-loading" id="loading-screen">
+            <div class="empire-logo-large">🏛️ EMPIRE</div>
+            <div class="loading-text">Initializing Navigator...</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nova Voice Interface -->
+    <div class="nova-interface" id="nova-btn" onclick="activateNova()">
+        <div class="nova-icon">🎤</div>
+    </div>
+
+    <!-- Societas Panel Toggle -->
+    <div class="societas-toggle" onclick="toggleSocietas()">
+        <span>SOCIETAS</span>
+    </div>
+
+    <!-- Voice Command Overlay -->
+    <div class="voice-overlay" id="voice-overlay">
+        <div class="voice-content">
+            <div class="voice-animation"></div>
+            <div class="voice-text">Nova is listening...</div>
+            <div class="voice-command" id="voice-command-text">Say "Navigate to GitHub" or "Show Societas"</div>
+        </div>
+    </div>
+
+    <script src="scripts/WindowManager.js"></script>
+    <script src="scripts/renderer.js"></script>
+</body>
+</html>
