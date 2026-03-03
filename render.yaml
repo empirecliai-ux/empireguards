@@ -1,9 +1,9 @@
 services:
-  - type: worker
-    name: empire-boot-server
+  - type: web
+    name: empire-cli-web
     runtime: node
     buildCommand: npm install
-    startCommand: node scripts/boot_server.js
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production

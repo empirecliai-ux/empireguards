@@ -1,5 +1,25 @@
 {
   "dependencies": {
-    "@openai/codex-sdk": "^0.106.0"
-  }
+    "@openai/codex-sdk": "^0.106.0",
+    "express": "^5.2.1"
+  },
+  "name": "empireguards",
+  "version": "1.0.0",
+  "description": "Unified Command Center for the Empire Ecosystem.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/empirecliai-ux/empireguards.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/empirecliai-ux/empireguards/issues"
+  },
+  "homepage": "https://github.com/empirecliai-ux/empireguards#readme"
 }
