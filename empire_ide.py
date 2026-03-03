@@ -283,6 +283,7 @@ class EmpireIDE:
         tk.Button(terminal_frame, text='Launch Nexus App', bg=self.colors['accent'], fg=self.colors['bg'], command=self.launch_nexus).pack(fill=tk.X, padx=5, pady=2)
         tk.Button(terminal_frame, text='Launch Navigator Browser', bg='#0055ff', fg='#ffffff', command=self.launch_navigator).pack(fill=tk.X, padx=5, pady=2)
         tk.Button(terminal_frame, text='Stamp File with QR', bg='#7c3aed', fg='#ffffff', command=self.stamp_file_with_qr).pack(fill=tk.X, padx=5, pady=2)
+        tk.Button(terminal_frame, text='Launch iVentoy PXE', bg='#eab308', fg='#000000', command=self.launch_iventoy).pack(fill=tk.X, padx=5, pady=2)
 
         self.status_bar = tk.Label(self.root, text='Empire IDE Ready - Guardian Standing By', bg=self.colors['bg'], fg=self.colors['success'], anchor=tk.W, font=('Consolas', 9))
         self.status_bar.pack(side=tk.BOTTOM, fill=tk.X)
@@ -521,8 +522,8 @@ class EmpireIDE:
 
         def worker():
             try:
-                # Use npm start to launch the electron app
-                cmd = ['npm', 'start']
+                # Use npx electron to launch the electron app
+                cmd = ['npx', 'electron', '.']
                 result = subprocess.run(cmd, cwd=str(nexus_dir), capture_output=True, text=True)
                 if result.returncode != 0:
                     self.root.after(0, lambda: self.codex_log(f'ERR: Nexus failed: {result.stderr}'))
@@ -540,7 +541,7 @@ class EmpireIDE:
 
         def worker():
             try:
-                cmd = ['npm', 'start']
+                cmd = ['npx', 'electron', '.']
                 result = subprocess.run(cmd, cwd=str(nav_dir), capture_output=True, text=True)
                 if result.returncode != 0:
                     self.root.after(0, lambda: self.codex_log(f'ERR: Navigator failed: {result.stderr}'))
@@ -591,6 +592,28 @@ class EmpireIDE:
             
         except Exception as e:
             self.codex_log(f"ERR: QR Generation failed: {e}")
+
+    def launch_iventoy(self):
+        self.codex_log('Starting iVentoy PXE Server...')
+        iventoy_dir = Path('/home/tg/empireguards/iventoy')
+        if not iventoy_dir.exists():
+            self.codex_log('ERR: iVentoy directory not found.')
+            return
+
+        def worker():
+            try:
+                # Start iVentoy service
+                cmd = ['sudo', './iventoy.sh', 'start']
+                subprocess.run(cmd, cwd=str(iventoy_dir))
+                self.root.after(0, lambda: self.codex_log('iVentoy Started. Access UI at http://localhost:26000'))
+                # Open browser to the UI
+                import webbrowser
+                time.sleep(2)
+                webbrowser.open('http://localhost:26000')
+            except Exception as e:
+                self.root.after(0, lambda: self.codex_log(f'ERR: Failed to start iVentoy: {e}'))
+
+        threading.Thread(target=worker, daemon=True).start()
 
     def run_shell_from_input(self, event=None):
         user_input = self.shell_input.get().strip()
