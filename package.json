@@ -9,7 +9,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
   },
   "repository": {
     "type": "git",
@@ -21,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/empirecliai-ux/empireguards/issues"
   },
-  "homepage": "https://github.com/empirecliai-ux/empireguards#readme"
+  "homepage": "https://github.com/empirecliai-ux/empireguards#readme",
+  "devDependencies": {
+    "wrangler": "^4.69.0"
+  }
 }
